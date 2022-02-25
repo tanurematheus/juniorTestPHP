@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-require_once "./class/product.php";
+include_once "product.php";
 
 class DVD extends Product
 {
@@ -22,5 +20,9 @@ class DVD extends Product
     public function info($value)
     {
         echo "Size: " . $value['info'] . " MB";
+    }
+    public function insertDB()
+    {
+        return $_POST['size'];
     }
 }

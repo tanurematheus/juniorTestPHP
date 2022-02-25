@@ -1,40 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require "./class/db.php";
-require "./class/dvd.php";
-require "./class/furniture.php";
-require "./class/book.php";
-
-$database   = 'mysql';
-$host       = '127.0.0.1';
-$dbname = 'products';
-$port       = 3306;
-$user       = 'root';
-$password   = '';
-
-$product = new db($database, $host, $dbname, $port, $user, $password);
-
-if (isset($_POST['delete_checkbox'])) {
-    $products_to_delete = $_POST['delete_checkbox'];
-    foreach ($products_to_delete as $delete_checkbox) {
-        $product->delete($delete_checkbox);
-    }
-}
-
-if (isset($_POST['sku'])) {
-    if (isset($_POST['size'])) {
-        $info = $_POST['size'];
-    } else if (isset($_POST['weight'])) {
-        $info = $_POST['weight'];
-    } else {
-        $info = $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length'];
-    }
-    try {
-        $product->insert($_POST['sku'], $_POST['name'], $_POST['price'], $_POST['productType'], $info);
-    } catch (Exception $e) {
-    }
-}
+include_once "db/connection.php";
+include_once "class/dvd.php";
+include_once "class/furniture.php";
+include_once "class/book.php";
 ?>
 
 <head>
@@ -61,9 +31,9 @@ if (isset($_POST['sku'])) {
             </button>
         </div>
     </header>
-    <form id="mass_delete" action="./index.php" method="POST">
+    <form id="mass_delete" action="./db/mass-delete.php" method="POST">
         <?php
-        foreach ($product->list() as $value) {
+        foreach ($connection->list() as $value) {
         ?>
             <div class="product">
                 <input class="delete-checkbox" name="delete_checkbox[]" type="checkbox" value="<?php echo $value['sku'] ?>">

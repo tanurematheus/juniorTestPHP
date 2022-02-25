@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-require_once "./class/product.php";
+include_once "product.php";
 
 
 class Furniture extends Product
@@ -35,5 +33,9 @@ class Furniture extends Product
     public function info($value)
     {
         echo "Dimension: " . $value['info'];
+    }
+    public function insertDB()
+    {
+        return $_POST['height'] . 'x' . $_POST['width'] . 'x' . $_POST['length'];
     }
 }

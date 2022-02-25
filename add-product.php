@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require "./class/dvd.php";
-require "./class/furniture.php";
-require "./class/book.php";
+include_once "class/dvd.php";
+include_once "class/furniture.php";
+include_once "class/book.php";
 ?>
 
 <head>
@@ -30,7 +30,7 @@ require "./class/book.php";
             </button>
         </div>
     </header>
-    <form id="product_form" method="POST" action="<?php echo (isset($_POST['productType'])) ? "./index.php" : "./add-product.php" ?>" name="product_form">
+    <form id="product_form" method="POST" action="<?php echo (isset($_POST['productType'])) ? "db/insert.php" : "add-product.php" ?>" name="product_form">
         <div class="inputs">
             <label for="sku">
                 SKU

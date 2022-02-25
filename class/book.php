@@ -1,9 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-require_once "./class/product.php";
-
+include_once "product.php";
 
 class Book extends Product
 {
@@ -23,5 +20,9 @@ class Book extends Product
     public function info($value)
     {
         echo "Weight: " . $value['info'] . " KG";
+    }
+    public function insertDB()
+    {
+        return $_POST['weight'];
     }
 }
